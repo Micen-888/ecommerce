@@ -1,0 +1,26 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: ecommerce_olap_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ecommerce_olap
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  mongo:
+    image: mongo:7
+    container_name: ecommerce_olap_mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  postgres_data:
+  mongo_data:
